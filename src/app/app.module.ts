@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { BrowserModule , Title} from '@angular/platform-browser';  
 
 
 import { AppRoutingModule } from './app.routing';
@@ -34,6 +35,7 @@ import { AnswerscriptsComponent } from './answerscripts/answerscripts.component'
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    BrowserModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })
@@ -45,7 +47,7 @@ import { AnswerscriptsComponent } from './answerscripts/answerscripts.component'
     AnswerscriptsComponent,
 
   ],
-  providers: [],
+  providers: [Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
