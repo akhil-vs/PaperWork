@@ -59,10 +59,4 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-profile',   component: UserProfileComponent, data: {title: 'Profile'} },
     { path: 'classes',        component: ClassesComponent, data: {title: 'Classes'} },
     { path: 'answerscripts',  component: AnswerscriptsComponent, data: {title: 'AnswerScripts'} },
-    { path: 'table-list',     component: TableListComponent },
-    { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent },
 ];

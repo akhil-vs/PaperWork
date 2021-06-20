@@ -43,14 +43,13 @@ import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helper
     })
   ],
   declarations: [
+    LoginComponent,
     AppComponent,
     AdminLayoutComponent,
     ClassesComponent,
     AnswerscriptsComponent,
-
   ],
   providers: [
-    Title,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     fakeBackendProvider
