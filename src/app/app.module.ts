@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserModule , Title} from '@angular/platform-browser';  
 
@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -25,6 +26,7 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { ClassesComponent } from './classes/classes.component';
 import { AnswerscriptsComponent } from './answerscripts/answerscripts.component';
+import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helpers';
 
 @NgModule({
   imports: [
@@ -47,7 +49,12 @@ import { AnswerscriptsComponent } from './answerscripts/answerscripts.component'
     AnswerscriptsComponent,
 
   ],
-  providers: [Title],
+  providers: [
+    Title,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
