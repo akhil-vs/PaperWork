@@ -21,7 +21,7 @@ export class AppComponent {
             .subscribe(() => {
                 const rt = this.getChild(this.activatedRoute);
                 rt.data.subscribe((data) => {
-                    this.titleService.setTitle("Paper Work: "+data.title);
+                    this.titleService.setTitle(data.title!= undefined? "Paper Work: "+data.title: "Paper Work");
                 });
             });
     }
