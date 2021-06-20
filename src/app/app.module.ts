@@ -22,6 +22,8 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { ClassesComponent } from './classes/classes.component';
+import { AnswerscriptsComponent } from './answerscripts/answerscripts.component';
 
 @NgModule({
   imports: [
@@ -39,6 +41,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    ClassesComponent,
+    AnswerscriptsComponent,
 
   ],
   providers: [],
