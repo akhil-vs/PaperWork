@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from 'app/_services/project.service';
 import * as Chartist from 'chartist';
 
 @Component({
@@ -8,7 +9,7 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private proService: ProjectService) { }
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -65,9 +66,18 @@ export class DashboardComponent implements OnInit {
 
       seq2 = 0;
   };
+  testDb() {
+    this.proService.testApi().subscribe(
+        (res) => {
+            console.log(res);
+        }, (err) => {
+            console.log(err);
+        }
+    );
+  }
   ngOnInit() {
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
-
+    this.testDb();
       const dataDailySalesChart: any = {
           labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
           series: [
