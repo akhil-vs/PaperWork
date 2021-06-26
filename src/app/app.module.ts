@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login';
 import { HomeComponent } from './home';
 import { AlertComponent } from './_components';
 
@@ -36,7 +35,6 @@ import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helper
     // })
   ],
   declarations: [
-    LoginComponent,
     AppComponent,
     AlertComponent,
     HomeComponent,

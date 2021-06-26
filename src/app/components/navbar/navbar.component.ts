@@ -130,4 +130,8 @@ export class NavbarComponent implements OnInit {
     logout() {
         this.accountService.logout();
     }
+    redirectToProfile() {
+        this.router.navigateByUrl("profile");
+    }
+
 }
