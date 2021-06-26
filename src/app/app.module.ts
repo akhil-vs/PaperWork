@@ -5,24 +5,17 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserModule , Title} from '@angular/platform-browser';  
 
-
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login';
+import { HomeComponent } from './home';
+import { AlertComponent } from './_components';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { TableListComponent } from './table-list/table-list.component';
-import { TypographyComponent } from './typography/typography.component';
-import { IconsComponent } from './icons/icons.component';
-import { MapsComponent } from './maps/maps.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { UpgradeComponent } from './upgrade/upgrade.component';
-import {
-  AgmCoreModule
-} from '@agm/core';
+// import {
+//   AgmCoreModule
+// } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { ClassesComponent } from './classes/classes.component';
 import { AnswerscriptsComponent } from './answerscripts/answerscripts.component';
@@ -38,13 +31,15 @@ import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helper
     RouterModule,
     AppRoutingModule,
     BrowserModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
+    // })
   ],
   declarations: [
     LoginComponent,
     AppComponent,
+    AlertComponent,
+    HomeComponent,
     AdminLayoutComponent,
     ClassesComponent,
     AnswerscriptsComponent,
@@ -52,7 +47,7 @@ import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helper
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider
+    // fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })
