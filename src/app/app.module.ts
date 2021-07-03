@@ -20,6 +20,7 @@ import { ClassesComponent } from './classes/classes.component';
 import { AnswerscriptsComponent } from './answerscripts/answerscripts.component';
 import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helpers';
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -29,7 +30,7 @@ import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helper
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    BrowserModule,
+    BrowserModule
     // AgmCoreModule.forRoot({
     //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     // })

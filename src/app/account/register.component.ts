@@ -12,6 +12,8 @@ export class RegisterComponent implements OnInit {
     form: FormGroup;
     loading = false;
     submitted = false;
+    roles;
+    selectedRole;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -28,10 +30,15 @@ export class RegisterComponent implements OnInit {
             lastName: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPassword: ['', Validators.required]
+            confirmPassword: ['', Validators.required],
+            roles: ['', Validators.required]
         }, {
             validator: MustMatch('password', 'confirmPassword')
         });
+        this.roles = [
+            {name: "I'm a Teacher", code: 'Teacher'},
+            {name: "I'm a Student", code: 'Student'},
+        ];
     }
 
     // convenience getter for easy access to form fields
