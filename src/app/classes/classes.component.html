@@ -7,8 +7,8 @@
                         <h4 class="card-title ">Classes</h4>
                         <p class="card-category">Work on Creation of Classes, Addition of Students and Exam titles</p>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
+                    <div class="card-body row mx-2">
+                        <!-- <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead class="">
                                     <th>
@@ -132,6 +132,13 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div> -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title"><h3>Classes<i data-toggle="modal" data-target="#createNew" class="float-right fa fa-plus-circle"></i></h3></div>
+                                <div class="card-text" *ngIf="classList.length == 0">No classes added</div>
+                                <div class="card-text" *ngIf="classList.length > 0"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -139,4 +146,37 @@
         </div>
     </div>
   </div>
-  
+  <div class="modal fade" id="createNew" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Add new class</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="createClassForm" (ngSubmit)="onSubmit()">
+            <div class="modal-body">
+                <div>
+                    <div class="form-group">
+                        <label>Class Name</label>
+                        <input type="text" formControlName="class" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.class.errors }" />
+                        <div *ngIf="submitted && f.class.errors" class="invalid-feedback">
+                            <div *ngIf="f.class.errors.required">Class Name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea  class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Reset</button>
+                <button class="btn btn-primary">Create</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
