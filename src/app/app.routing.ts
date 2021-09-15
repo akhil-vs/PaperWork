@@ -60,7 +60,3 @@ const routes: Routes =[
   ],
 })
 export class AppRoutingModule { }
-
-// Name	Rolando Cartwright
-// Username	rolando24@ethereal.email (also works as a real inbound email address)
-// Password	4wvEezNTGwv4rHCCp8

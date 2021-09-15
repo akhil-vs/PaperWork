@@ -31,14 +31,20 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a
-                        class="nav-link dropdown-toggle"
+                        class="nav-link dropdown-toggle d-flex justify-content-center"
+                        style="align-items: flex-end; flex-direction: column;"
                         href="#"
                         id="navbarDropdownMenuLink"
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false"
                     >
-                        <i class="fa fa-user"></i> {{ userDetails?.firstName + ' ' + userDetails?.lastName }}
+                        <div>
+                            {{ userDetails?.firstName + ' ' + userDetails?.lastName }}
+                        </div>
+                        <div style="font-size: 12px;">
+                            {{ userDetails?.role }}
+                        </div>
                     </a>
                     <div
                         class="dropdown-menu"

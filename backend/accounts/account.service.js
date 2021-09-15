@@ -84,6 +84,8 @@ async function revokeToken({ token, ipAddress }) {
 }
 
 async function register(params, origin) {
+    console.log("AccountService:87 ")
+    console.log(params);
     // validate
     if (await db.Account.findOne({ email: params.email })) {
         // send already registered error in email to prevent account enumeration
@@ -95,7 +97,7 @@ async function register(params, origin) {
 
     // first registered account is an admin
     const isFirstAccount = (await db.Account.countDocuments({})) === 0;
-    account.role = isFirstAccount ? Role.Admin : Role.User;
+    account.role = params.role == 'Admin' ? Role.Admin : params.role == 'Teacher' ? Role.Teacher : Role.Student;
     account.verificationToken = randomTokenString();
 
     // hash password
@@ -120,7 +122,6 @@ async function verifyEmail({ token }) {
 
 async function forgotPassword({ email }, origin) {
     const account = await db.Account.findOne({ email });
-
     // always return ok response to prevent email enumeration
     if (!account) return;
 

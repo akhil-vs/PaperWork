@@ -25,13 +25,14 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.formBuilder.group({
-            title: ['', Validators.required],
+            // title: ['', Validators.required],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
             confirmPassword: ['', Validators.required],
-            roles: ['', Validators.required]
+            role: ['', Validators.required]
+            // acceptTerms: [false, Validators.requiredTrue]
         }, {
             validator: MustMatch('password', 'confirmPassword')
         });
@@ -68,5 +69,9 @@ export class RegisterComponent implements OnInit {
                     this.loading = false;
                 }
             });
+    }
+
+    setRole(role: string) {
+        this.f.role.setValue(role);
     }
 }

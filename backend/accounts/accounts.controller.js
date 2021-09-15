@@ -22,10 +22,9 @@ router.post('/', authorize(Role.Admin), createSchema, create);
 router.put('/:id', authorize(), updateSchema, update);
 router.delete('/:id', authorize(), _delete);
 
-module.exports = router;
 
 function testing() {
-    
+    console.log("Testing function inside controller")
 }
 
 function authenticateSchema(req, res, next) {
@@ -84,19 +83,21 @@ function revokeToken(req, res, next) {
 
 function registerSchema(req, res, next) {
     const schema = Joi.object({
-        title: Joi.string().required(),
         firstName: Joi.string().required(),
         lastName: Joi.string().required(),
         email: Joi.string().email().required(),
         password: Joi.string().min(6).required(),
         confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
-        acceptTerms: Joi.boolean().valid(true).required()
+        role: Joi.string().required()
     });
+    console.log("AccountController:#93");
+    console.log(schema)
     validateRequest(req, next, schema);
 }
 
 function register(req, res, next) {
-    accountService.register(req.body, req.get('origin'))
+    console.log(req.body)
+        accountService.register(req.body, req.get('origin'))
         .then(() => res.json({ message: 'Registration successful, please check your email for verification instructions' }))
         .catch(next);
 }
@@ -243,3 +244,5 @@ function setTokenCookie(res, token) {
     };
     res.cookie('refreshToken', token, cookieOptions);
 }
+
+module.exports = router;
