@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 
+import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from 'app/_components';
+
 @Component({
   selector: 'app-classes',
   templateUrl: './classes.component.html',
@@ -12,7 +15,11 @@ export class ClassesComponent implements OnInit {
   examList: any[] = [];
   createClassForm: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder) { }
+
+  constructor(
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.createClassForm = this.formBuilder.group({
@@ -21,6 +28,13 @@ export class ClassesComponent implements OnInit {
     });
   }
   get f() { return this.createClassForm.controls; }
+
+  openModal() {
+    const dialogRef = this.dialog.open(AlertComponent , {
+      width: '350px',
+      data: {type: "createClass"}
+    });
+  }
 
     onSubmit() {
         this.submitted = true;

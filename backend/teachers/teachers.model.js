@@ -11,7 +11,7 @@ const Schema = mongoose.Schema;
 
 const teacher = new Schema({
   name: String,
-  class: { type: Array, default: [] }
+  classes: { type: Array, default: [] }
 })
 
 // module.exports = mongoose.model('Teacher', fullDetails);

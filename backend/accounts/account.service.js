@@ -56,7 +56,7 @@ async function authenticate({ email, password, ipAddress }) {
     };
 }
 
-async function currentUser() {
+function currentUser() {
     console.log(detail);
     return detail;
 }

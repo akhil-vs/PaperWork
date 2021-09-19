@@ -12,15 +12,18 @@ router.post('/class', createClass);
 //   console.log("TeacherController-createSchema"+req);
 // }
 
-function createClass(req, res) {
+function createClass(req, res, next) {
   console.log("TeacherController-createClass");
-  console.log(req);
-  teacherService.currentUser()
+  teacherService.createClass(req.body)
   .then((result) => {
-    console.log("TeacherController#20" + result)
-    res.json(result)
+    if(!result) {
+      res.status(403);
+      res.send({ detail: "You do not have the permission to perform this action" });
+    } else {
+      console.log(result);
+      res.send({ detail: "Class created successfully" })
+    }
   })
-  .catch(next);
 }
 
 module.exports = router;

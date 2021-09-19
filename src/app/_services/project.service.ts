@@ -33,9 +33,9 @@ export class ProjectService {
   //   })
   // }
 
-  createClass() {
+  createClass(name: string) {
     return this.http.post<any>(`${this.baseUrl}/teachers/class`, {
-
+      name: name
     })
   }
 

@@ -123,3 +123,27 @@
     </mat-card-header>
   </mat-card>
 </div>
+
+<div *ngIf="data?.type == 'createClass'">
+  <h3 style="margin-top: 0"><b>Create Class</b></h3>
+  <mat-form-field appearance="outline">
+    <mat-label>
+      <span class="material-icons" style="font-size: 12px !important">
+        badge
+      </span>
+      Class Name
+    </mat-label>
+    <input matInput [(ngModel)]="className" placeholder="Class Name" type="text" minlength="3" maxlength="10" />
+  </mat-form-field>
+  <div class="d-flex justify-content-end">
+    <button
+      class="mr-2"
+      mat-raised-button
+      color="accent"
+      (click)="closeModal()"
+    >
+      Cancel
+    </button>
+    <button mat-raised-button color="primary" (click)="createClass()">Create</button>
+  </div>
+</div>

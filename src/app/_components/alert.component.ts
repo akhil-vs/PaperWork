@@ -39,6 +39,8 @@ export class AlertComponent implements OnInit, OnDestroy {
         name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
     });;
 
+    className: string = '';
+
     constructor(
         private formBuilder: FormBuilder,
         private router: Router, 
@@ -83,7 +85,7 @@ export class AlertComponent implements OnInit, OnDestroy {
             }
         });
 
-        this.createClass();
+        // this.createClass();
     }
 
     // createOrg() {
@@ -108,7 +110,7 @@ export class AlertComponent implements OnInit, OnDestroy {
     // }
 
     createClass() {
-        this.proService.createClass().subscribe(
+        this.proService.createClass(this.className).subscribe(
             (res) => {
                 console.log(res);
             }, (err) => {
