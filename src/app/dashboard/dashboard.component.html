@@ -1,5 +1,37 @@
 <div class="main-content">
   <div class="container-fluid">
+      <div class="createButtonsDiv">
+        <!-- <button mat-raised-button color="primary" class="mr-2" (click)="createOrganization()">
+            <span class="material-icons">
+                post_add
+            </span>
+            Create Organization
+        </button> -->
+        <button 
+        *ngIf="userDetails.role == 'Admin'"
+        mat-raised-button color="primary" class="mr-2" (click)="createTeacher()">
+            <span class="material-icons">
+                person_add
+            </span>
+            Create Teacher
+        </button>
+        <button 
+        *ngIf="userDetails.role != 'Student'"
+        mat-raised-button color="primary" class="mr-2" (click)="createTeacher()">
+            <span class="material-icons">
+                library_add
+            </span>
+            Create Exam
+        </button>
+        <button 
+        *ngIf="userDetails.role != 'Student'"
+        mat-raised-button color="primary" (click)="createStudent()">
+            <span class="material-icons">
+                add_reaction
+            </span>
+            Create Student
+        </button>
+      </div>
       <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">

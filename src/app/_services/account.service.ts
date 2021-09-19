@@ -18,7 +18,7 @@ export class AccountService {
         private router: Router,
         private http: HttpClient
     ) {
-        this.accountSubject = new BehaviorSubject<Account>(null);
+        this.accountSubject = new BehaviorSubject<Account>(JSON.parse(localStorage.getItem('currentUser')));
         this.account = this.accountSubject.asObservable();
     }
 
@@ -26,9 +26,9 @@ export class AccountService {
         return this.accountSubject.value;
     }
 
-    test() {
-        return this.http.get<any>(`${baseUrl}/test`);
-    }
+    // test() {
+    //     return this.http.get<any>(`${baseUrl}/test`);
+    // }
 
     login(email: string, password: string) {
         return this.http.post<any>(`${baseUrl}/authenticate`, { email, password }, { withCredentials: true })

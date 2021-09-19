@@ -25,18 +25,18 @@ export class LoginComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required]
         });
-        this.testfunction();
+        // this.testfunction();
     }
 
-    testfunction() {
-        this.accountService.test().subscribe(
-            (res) => {
-                console.log(res);
-            }, (err) => {
-                console.log(err);
-            }
-        );
-    }
+    // testfunction() {
+    //     this.accountService.test().subscribe(
+    //         (res) => {
+    //             console.log(res);
+    //         }, (err) => {
+    //             console.log(err);
+    //         }
+    //     );
+    // }
 
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }

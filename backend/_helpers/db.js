@@ -7,8 +7,9 @@ mongoose.Promise = global.Promise;
 module.exports = {
     Class: require('../classes/classes.model'),
     Teacher: require('../teachers/teachers.model'),
-    MiniTeacher: require('../teachers/teachers.model'),
+    // MiniTeacher: require('../teachers/teachers.model'),
     Account: require('../accounts/account.model'),
+    Core: require('../core/core.model'),
     RefreshToken: require('../accounts/refresh-token.model'),
     isValidId
 };

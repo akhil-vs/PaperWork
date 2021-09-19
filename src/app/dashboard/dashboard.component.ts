@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+
+import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from 'app/_components';
+import { AccountService } from 'app/_services/account.service';
+
 import { ProjectService } from 'app/_services/project.service';
+
 import * as Chartist from 'chartist';
 
 @Component({
@@ -9,7 +15,14 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private proService: ProjectService) { }
+  userDetails: any;
+  userObservable$: any;
+
+  constructor(
+    private accountService: AccountService,
+    public dialog: MatDialog
+    ) { }
+
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -67,6 +80,11 @@ export class DashboardComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
+    this.userObservable$ = this.accountService.account.subscribe(
+      (res) => {
+          this.userDetails = res;
+      }
+    );
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
       const dataDailySalesChart: any = {
           labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
@@ -145,6 +163,31 @@ export class DashboardComponent implements OnInit {
 
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
+  }
+
+  createOrganization() {
+    const dialogRef = this.dialog.open(AlertComponent , {
+      width: '350px',
+      data: {type: "createOrg"}
+    });
+  }
+
+  createTeacher() {
+    const dialogRef = this.dialog.open(AlertComponent , {
+      width: '350px',
+      data: {type: "createTeacher"}
+    });
+  }
+
+  createStudent() {
+    const dialogRef = this.dialog.open(AlertComponent , {
+      width: '350px',
+      data: {type: "createStudent"}
+    });
+  }
+
+  ngOnDestroy() {
+    this.userObservable$.unsubscribe();
   }
 
 }

@@ -20,6 +20,11 @@ import { ClassesComponent } from './classes/classes.component';
 import { AnswerscriptsComponent } from './answerscripts/answerscripts.component';
 import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helpers';
 
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -30,7 +35,12 @@ import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helper
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule
     // AgmCoreModule.forRoot({
     //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     // })

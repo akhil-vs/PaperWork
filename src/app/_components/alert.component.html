@@ -1,8 +1,125 @@
-﻿<div *ngIf="alerts.length" class="container">
-    <div class="m-3">
-        <div *ngFor="let alert of alerts" class="{{cssClasses(alert)}}">
-            <a class="close" (click)="removeAlert(alert)">&times;</a>
-            <span [innerHTML]="alert.message"></span>
-        </div>
+﻿<div *ngIf="data?.type == 'createOrg'">
+  <h3 style="margin-top: 0"><b>Create Organization</b></h3>
+  <form [formGroup]="organization" (ngSubmit)="createOrg()">
+    <mat-form-field appearance="outline">
+      <mat-label>
+        <span class="material-icons" style="font-size: 12px !important">
+          badge
+        </span>
+        Organization Name
+      </mat-label>
+      <input matInput formControlName="name" placeholder="Organization Name" type="text" minlength="3" maxlength="20"
+      [class.invalid]="submitted && (f.name.value?.trim() == '' )"
+      />
+    </mat-form-field>
+    <mat-label>Organization Contact</mat-label>
+    <mat-form-field appearance="outline">
+      <mat-label>
+        <span class="material-icons" style="font-size: 12px !important">
+          label
+        </span>
+        First Name
+      </mat-label>
+      <input matInput formControlName="first_name" placeholder="First Name" type="text" minlength="3" maxlength="20"
+      [class.invalid]="submitted && (f.first_name.value?.trim() == '' )"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>
+        <span class="material-icons" style="font-size: 12px !important">
+          label_important
+        </span>
+        Last Name
+      </mat-label>
+      <input matInput formControlName="last_name" placeholder="Last Name" type="text" minlength="1" maxlength="20"
+      [class.invalid]="submitted && (f.last_name.value?.trim() == '' )"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>
+        <span class="material-icons" style="font-size: 12px !important">
+          alternate_email
+        </span>
+        Email
+      </mat-label>
+      <input matInput formControlName="email" placeholder="Email" type="text" 
+      [class.invalid]="submitted && (f.email.value?.trim() == '' )"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>
+        <span class="material-icons" style="font-size: 12px !important">
+          phone
+        </span>
+        Phone
+      </mat-label>
+      <input matInput formControlName="phone" placeholder="Phone" type="number" />
+    </mat-form-field>
+    <div class="d-flex justify-content-end">
+      <button
+        type="button"
+        class="mr-2"
+        mat-raised-button
+        color="accent"
+        (click)="closeModal()"
+      >
+        Cancel
+      </button>
+      <button type="submit" mat-raised-button color="primary">Create</button>
     </div>
+  </form>
+</div>
+
+<div *ngIf="data?.type == 'createTeacher'">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Create Teacher</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="teacher">
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input
+            matInput
+            formControlName="first_name"
+            placeholder="First Name"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="last_name" placeholder="Last Name" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Email" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Phone</mat-label>
+          <input matInput formControlName="phone" placeholder="Phone" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Organization</mat-label>
+          <mat-select>
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Class</mat-label>
+          <mat-select>
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngIf="data?.type == 'createStudent'">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Create Student</mat-card-title>
+    </mat-card-header>
+  </mat-card>
 </div>

@@ -24,9 +24,9 @@ export class AdminLayoutComponent implements OnInit {
   constructor( public location: Location, private router: Router, private accountService: AccountService) {}
 
   ngOnInit() {
-        this.accountService.getAll().pipe(first()).subscribe(users => {
-            this.users = users;
-        });
+        // this.accountService.getAll().pipe(first()).subscribe(users => {
+        //     this.users = users;
+        // });
     //   const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
     //   if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {

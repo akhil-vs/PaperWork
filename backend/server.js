@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const errorHandler = require('_middleware/error-handler');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -17,6 +17,7 @@ app.use(cors({ origin: (origin, callback) => callback(null, true), credentials: 
 app.use('/accounts', require('./accounts/accounts.controller'));
 app.use('/classes', require('./classes/classes.controller'));
 app.use('/teachers', require('./teachers/teachers.controller'));
+app.use('/core', require('./core/core.controller'));
 
 // swagger docs route
 // app.use('/api-docs', require('_helpers/swagger'));

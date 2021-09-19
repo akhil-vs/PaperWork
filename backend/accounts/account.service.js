@@ -6,6 +6,8 @@ const sendEmail = require('_helpers/send-email');
 const db = require('_helpers/db');
 const Role = require('_helpers/role');
 
+var detail;
+
 module.exports = {
     testing,
     authenticate,
@@ -20,7 +22,8 @@ module.exports = {
     getById,
     create,
     update,
-    delete: _delete
+    delete: _delete,
+    currentUser
 };
 
 async function testing() {
@@ -44,11 +47,18 @@ async function authenticate({ email, password, ipAddress }) {
     await refreshToken.save();
 
     // return basic details and tokens
+    detail = account;
+    console.log(detail)
     return {
         ...basicDetails(account),
         jwtToken,
         refreshToken: refreshToken.token
     };
+}
+
+async function currentUser() {
+    console.log(detail);
+    return detail;
 }
 
 async function refreshToken({ token, ipAddress }) {
