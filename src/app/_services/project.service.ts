@@ -36,7 +36,21 @@ export class ProjectService {
   createClass(name: string) {
     return this.http.post<any>(`${this.baseUrl}/teachers/class`, {
       name: name
-    })
+    });
+  }
+
+  listTeachers() {
+    return this.http.get<any>(`${this.baseUrl}/teachers/`);
+  }
+
+  updateClass(id: string, name: string) {
+    return this.http.put<any>(`${this.baseUrl}/teachers/class/${id}`, {
+      name: name
+    });
+  }
+
+  deleteClass(id: string) {
+    return this.http.delete<any>(`${this.baseUrl}/teachers/class/${id}/`);
   }
 
 }

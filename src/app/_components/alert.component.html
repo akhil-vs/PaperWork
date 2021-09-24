@@ -124,7 +124,7 @@
   </mat-card>
 </div>
 
-<div *ngIf="data?.type == 'createClass'">
+<div *ngIf="data?.type == 'createClass' || data?.type == 'editClass'">
   <h3 style="margin-top: 0"><b>Create Class</b></h3>
   <mat-form-field appearance="outline">
     <mat-label>
@@ -144,6 +144,24 @@
     >
       Cancel
     </button>
-    <button mat-raised-button color="primary" (click)="createClass()">Create</button>
+    <button mat-raised-button color="primary" (click)="createEditClass()">{{ data?.type == 'createClass' ? 'Create' : 'Update' }}</button>
+  </div>
+</div>
+
+<div *ngIf="data?.type == 'deleteClass'">
+  <h3 style="margin-top: 0"><b>{{  data?.type == 'deleteClass' ? 'Delete' : '' }} {{  data?.type == 'deleteClass' ? 'Class' : '' }}</b></h3>
+  <h5>
+    Are you sure {{  data?.type == 'deleteClass' ? 'deleting' : '' }} {{ data?.data }}
+  </h5>
+  <div class="d-flex justify-content-end">
+    <button
+      class="mr-2"
+      mat-raised-button
+      color="accent"
+      (click)="confirmAction('no')"
+    >
+      Cancel
+    </button>
+    <button mat-raised-button color="primary" (click)="confirmAction('yes')">Delete</button>
   </div>
 </div>

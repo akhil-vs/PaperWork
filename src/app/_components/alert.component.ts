@@ -85,7 +85,9 @@ export class AlertComponent implements OnInit, OnDestroy {
             }
         });
 
-        // this.createClass();
+        if(this.data.type == 'editClass') {
+            this.className = this.data.data.name;
+        }
     }
 
     // createOrg() {
@@ -109,18 +111,20 @@ export class AlertComponent implements OnInit, OnDestroy {
     //     console.log(this.f);
     // }
 
-    createClass() {
-        this.proService.createClass(this.className).subscribe(
-            (res) => {
-                console.log(res);
-            }, (err) => {
-                console.log(err);
-            }
-        );
+    createEditClass() {
+        if(!this.className || this.className.trim() == '') {
+            return
+        } else {
+            this.dialogRef.close(this.className);
+        }
     }
 
     closeModal() {
         this.dialogRef.close();
+    }
+
+    confirmAction(type: string) {
+        this.dialogRef.close(type);
     }
 
     ngOnDestroy() {

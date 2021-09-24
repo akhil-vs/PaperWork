@@ -18,7 +18,17 @@
                                 </div>
                                 <div class="card-text" *ngIf="classList.length == 0">No classes added</div>
                                 <div class="card-text" *ngIf="classList.length > 0">
-                                    Classes are added...
+                                    <div *ngFor="let class of classList" class="d-flex justify-content-between">
+                                        <span>{{ class.name }}</span>
+                                        <div>
+                                            <span class="material-icons mr-2" (click)="editClass(class)" style="cursor: pointer;">
+                                                edit
+                                            </span>
+                                            <span class="material-icons" (click)="deleteClass(class)" style="cursor: pointer;">
+                                                delete
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
