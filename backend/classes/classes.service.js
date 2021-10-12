@@ -34,7 +34,7 @@ async function createClass(params) {
   } else {
     console.log("CreateClass()");
     console.log(params);
-    const existing = await db.Class.findOne({ name: params.name })
+    const existing = await db.Class.findOne({ grade: params.grade, division: params.division })
     console.log(existing);
     if(existing) throw "Class already exists !"
     const newClass = db.Class(params);

@@ -116,24 +116,25 @@
   </mat-card>
 </div>
 
-<div *ngIf="data?.type == 'createStudent'">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Create Student</mat-card-title>
-    </mat-card-header>
-  </mat-card>
-</div>
-
 <div *ngIf="data?.type == 'createClass' || data?.type == 'editClass'">
-  <h3 style="margin-top: 0"><b>Create Class</b></h3>
+  <h3 style="margin-top: 0"><b>{{ data?.type == 'createClass' ? 'Create' : 'Update' }} Class</b></h3>
   <mat-form-field appearance="outline">
     <mat-label>
       <span class="material-icons" style="font-size: 12px !important">
         badge
       </span>
-      Class Name
+      Grade
     </mat-label>
-    <input matInput [(ngModel)]="className" placeholder="Class Name" type="text" minlength="3" maxlength="10" />
+    <input matInput [(ngModel)]="classGrade" placeholder="Grade" type="number" min="1" max="12" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>
+      <span class="material-icons" style="font-size: 12px !important">
+        badge
+      </span>
+      Division
+    </mat-label>
+    <input matInput [(ngModel)]="classDivision" placeholder="Division" type="text" minlength="1" maxlength="2" />
   </mat-form-field>
   <div class="d-flex justify-content-end">
     <button
@@ -146,6 +147,60 @@
     </button>
     <button mat-raised-button color="primary" (click)="createEditClass()">{{ data?.type == 'createClass' ? 'Create' : 'Update' }}</button>
   </div>
+</div>
+
+<div *ngIf="data?.type == 'createStudent' || data?.type == 'editStudent'">
+  <h3 style="margin-top: 0"><b>{{ data?.type == 'createStudent' ? 'Create' : 'Update' }}  Student</b></h3>
+  <form [formGroup]="student" (ngSubmit)="createEditStudent()">
+    <mat-form-field appearance="outline">
+      <mat-label>
+        <span class="material-icons" style="font-size: 12px !important">
+          badge
+        </span>
+        Name
+      </mat-label>
+      <input matInput formControlName="name" placeholder="Name" type="string" minlength="3" maxlength="30" />
+    </mat-form-field>
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>
+        <span class="material-icons" style="font-size: 12px !important">
+          school
+        </span>
+        Grade
+      </mat-label>
+      <input matInput formControlName="grade" placeholder="Grade" type="number" min="1" max="12" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>
+        <span class="material-icons" style="font-size: 12px !important">
+          safety_divider
+        </span>
+        Division
+      </mat-label>
+      <input matInput formControlName="division" placeholder="Division" type="text" minlength="1" maxlength="2" />
+    </mat-form-field> -->
+    <mat-form-field appearance="outline">
+      <mat-label>
+        <span class="material-icons" style="font-size: 12px !important">
+          alternate_email
+        </span>
+        Email
+      </mat-label>
+      <input matInput formControlName="email" placeholder="Email" type="email" />
+    </mat-form-field>
+    <div class="d-flex justify-content-end">
+      <button
+      type="button"
+        class="mr-2"
+        mat-raised-button
+        color="accent"
+        (click)="closeModal()"
+      >
+        Cancel
+      </button>
+      <button mat-raised-button color="primary" type="submit">{{ data?.type == 'createStudent' ? 'Create' : 'Update' }}</button>
+    </div>
+  </form>
 </div>
 
 <div *ngIf="data?.type == 'deleteClass'">

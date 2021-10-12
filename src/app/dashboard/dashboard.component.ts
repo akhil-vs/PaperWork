@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
+    private proService: ProjectService,
     public dialog: MatDialog
     ) { }
 
@@ -165,12 +166,12 @@ export class DashboardComponent implements OnInit {
       this.startAnimationForBarChart(websiteViewsChart);
   }
 
-  createOrganization() {
-    const dialogRef = this.dialog.open(AlertComponent , {
-      width: '350px',
-      data: {type: "createOrg"}
-    });
-  }
+  // createOrganization() {
+  //   const dialogRef = this.dialog.open(AlertComponent , {
+  //     width: '350px',
+  //     data: {type: "createOrg"}
+  //   });
+  // }
 
   createTeacher() {
     const dialogRef = this.dialog.open(AlertComponent , {
@@ -179,12 +180,26 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  createStudent() {
-    const dialogRef = this.dialog.open(AlertComponent , {
-      width: '350px',
-      data: {type: "createStudent"}
-    });
-  }
+  // createStudent() {
+  //   const dialogRef = this.dialog.open(AlertComponent , {
+  //     width: '350px',
+  //     data: {type: "createStudent"}
+  //   });
+  //   dialogRef.afterClosed().subscribe(
+  //     (result) => {
+  //       console.log(result);
+  //       if(result && result.name) {
+  //         this.proService.createStudent(result.name, result.grade, result.div, result.email).subscribe(
+  //           (res) => {
+  //             console.log(res);
+  //           }, (err) => {
+  //             console.log(err);
+  //           }
+  //         );
+  //       }
+  //     }
+  //   );
+  // }
 
   ngOnDestroy() {
     this.userObservable$.unsubscribe();

@@ -40,7 +40,7 @@ export class ClassesComponent implements OnInit {
 
   get f() { return this.createClassForm.controls; }
 
-  openModal() {
+  createClass() {
     const dialogRef = this.dialog.open(AlertComponent , {
       width: '350px',
       data: {type: "createClass"}
@@ -48,7 +48,7 @@ export class ClassesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       (result) => {
         if(result) {
-          this.proService.createClass(result).subscribe(
+          this.proService.createClass(result.grade, result.division).subscribe(
             (res) => {
               console.log(res);
               this.proService.listTeachers().subscribe(
@@ -121,6 +121,27 @@ export class ClassesComponent implements OnInit {
             console.log(err);
           }
         );
+        }
+      }
+    );
+  }
+
+  createStudent(grade: number, division: string) {
+    const dialogRef = this.dialog.open(AlertComponent , {
+      width: '350px',
+      data: {type: "createStudent", grade: grade, division: division}
+    });
+    dialogRef.afterClosed().subscribe(
+      (result) => {
+        console.log(result);
+        if(result && result.name) {
+          this.proService.createStudent(result.name, grade, division, result.email).subscribe(
+            (res) => {
+              console.log(res);
+            }, (err) => {
+              console.log(err);
+            }
+          );
         }
       }
     );

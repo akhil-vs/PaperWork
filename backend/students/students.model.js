@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-  grade: Number,
+  name: String,
+  classGrade: Number,
   division: String,
-  teachers: Array,
-  students: Array
+  email: String
 })
 
-module.exports = mongoose.model('Class', schema);
+module.exports = mongoose.model('Student', schema);
